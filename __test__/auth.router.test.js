@@ -6,6 +6,7 @@ const supertest = require("supertest");
 const request = supertest(server.app);
 
 describe("testing basic-auth", () => {
+  // jest.setTimeout(5000);
   it("signup", async () => {
     const response = await request.post("/signup").send({
       username: "test",
