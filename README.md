@@ -10,7 +10,7 @@ we begin the first of a 3-Phase build of an authentication system, written in Ex
    [Actions](https://github.com/marah-jaradat/basic-auth/actions)
 
 **2. The Pull request:**
-   [pull request](https://github.com/marah-jaradat/basic-auth/pull/2)
+   [pull request](https://github.com/marah-jaradat/basic-auth/pull/3)
 
 **3. Heroku link**
     [deploy-main](https://basic-auth-marah.herokuapp.com/)
