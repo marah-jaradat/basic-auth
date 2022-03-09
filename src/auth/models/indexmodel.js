@@ -6,8 +6,8 @@ require("dotenv").config();
 
 const Users = require("./users-model");
 
-const POSTGRES_URL =
-  process.env.NODE_ENV === "test" ? "sqlite:memory:" : process.env.DATABASE_URL;
+const DATABASE_URL =
+  process.env.NODE_ENV == "test" ? "sqlite:memory" : process.env.DATABASE_URL;
 
 let sequelizeOptions =
   process.env.NODE_ENV === "production"
@@ -15,13 +15,13 @@ let sequelizeOptions =
         dialectOptions: {
           ssl: {
             require: true,
-            rejectUnauthoized: false,
+            rejectUnauthorized: false,
           },
         },
       }
     : {};
 
-let sequelize = new Sequelize(POSTGRES_URL);
+const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
 
 module.exports = {
   db: sequelize,

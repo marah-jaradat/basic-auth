@@ -15,13 +15,18 @@ afterAll(async () => {
 });
 
 describe("testing my server", () => {
-  // it("testing to get 500 status", async () => {
-  //   const response = await request.get("/"); // async
-  //   expect(response.status).toBe(200);
+  it("handles my internal server errors", async () => {
+    const response = await request.get("/");
+    expect(response.status).toBe(500);
+  });
+
+  // it("testing to get 500 status pass", async () => {
+  //   const response = await request.get("/signin").auth("test", "123");
+  //   expect(response.status).toBe(500);
   // });
 
-  it("handles not found request", async () => {
-    const response = await request.get("/wrongPath");
-    expect(response.status).toBe(404);
-  });
+  // it("testing to get 500 status user", async () => {
+  //   const response = await request.post("/signin").auth("teeeeeest", "test123");
+  //   expect(response.status).toBe(500);
+  // });
 });

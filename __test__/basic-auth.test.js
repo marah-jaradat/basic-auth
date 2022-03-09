@@ -10,7 +10,7 @@ const { db } = require("../src/auth/models/indexmodel");
 describe("testing basic-auth", () => {
   it("signin", async () => {
     const response = await request.post("/signin").auth("test", "test123");
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(200);
   });
 
   it("test wrong username", async () => {
@@ -21,6 +21,15 @@ describe("testing basic-auth", () => {
   });
   it("test wrong password", async () => {
     const response = await request.post("/signin").auth("test", "teeeeest1234");
+    expect(response.status).toBe(404);
+  });
+  it("handles not found request", async () => {
+    const response = await request.get("/wrongPath");
+    expect(response.status).toBe(404);
+  });
+
+  it("404 found request", async () => {
+    const response = await request.post("/");
     expect(response.status).toBe(404);
   });
 });
