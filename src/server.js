@@ -10,7 +10,7 @@ const notFound = require("./middleware/404");
 // const base = require("base-64");
 
 const usersRout = require("./auth/router");
-// const basicAuth = require("./auth/middleware/basic");
+const basicAuth = require("./auth/middleware/basic");
 
 // express-middleare
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(usersRout);
 
 // my-routes
 app.get("/", (req, res) => {
-  res.send("home is alive");
+  res.status(500).send("home is alive");
 });
 // app.post("/signup", (rq, res) => {
 //   res.send("You have signed up");
