@@ -1,16 +1,16 @@
 "use strict";
 
-const { req, res } = require("express");
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const errorHandler = require("./middleware/500");
 const notFound = require("./middleware/404");
-// const bcrypt = require("bcrypt");
-// const base = require("base-64");
+const bcrypt = require("bcrypt");
 
-const usersRout = require("./auth/router");
+const usersRout = require("./router");
 const basicAuth = require("./auth/middleware/basic");
+const req = require("express/lib/request");
 
 // express-middleare
 app.use(express.json());
@@ -21,13 +21,20 @@ app.use(usersRout);
 app.get("/", (req, res) => {
   res.status(500).send("home is alive");
 });
-// app.post("/signup", (rq, res) => {
-//   res.send("You have signed up");
-// });
 
-// app.get("/signin", (req, res) => {
-//   res.send("You have logged in ");
-// });
+app.post("/signup", async (req, res) => {
+  try {
+    req.body.password = await bcrypt.hash(req.body.password, 5);
+    const record = await Users.create(req.body);
+    res.status(201).json(record);
+  } catch (error) {
+    res.status(403).send("Error occurred");
+  }
+});
+
+app.get("/signin", (req, res) => {
+  res.send("You have logged in ");
+});
 
 // start
 function start(port) {

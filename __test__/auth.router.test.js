@@ -21,10 +21,4 @@ describe("testing basic-auth routers", () => {
     const response = await request.post("/signin").auth("test", "test123");
     expect(response.status).toBe(200);
   });
-
-  // it("test signin route", async () => {
-  //   const response = await request.post(`/signin`).auth("username", "password");
-  //   expect(response.status).toEqual(200);
-  //   expect(response.body.username).toEqual("test");
-  // });
 });
