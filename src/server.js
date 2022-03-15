@@ -1,52 +1,75 @@
-"use strict";
+// "use strict";
 
-require("dotenv").config();
+// "use strict";
+
+// const express = require("express");
+// const cors = require("cors");
+// const app = express();
+// const router = require("./routes/authroute");
+
+("use strict");
+
 const express = require("express");
-const cors = require("cors");
 const app = express();
-const errorHandler = require("./middleware/500");
-const notFound = require("./middleware/404");
-const bcrypt = require("bcrypt");
-
-const usersRout = require("./router");
-const basicAuth = require("./auth/middleware/basic");
-const req = require("express/lib/request");
-
-// express-middleare
 app.use(express.json());
-app.use(cors());
-app.use(usersRout);
+const signup = require("../auth/signup");
+const signin = require("../auth/signin");
 
-// my-routes
 app.get("/", (req, res) => {
-  res.status(500).send("home is alive");
+  res.send("up and runnig");
 });
 
-app.post("/signup", async (req, res) => {
-  try {
-    req.body.password = await bcrypt.hash(req.body.password, 5);
-    const record = await Users.create(req.body);
-    res.status(201).json(record);
-  } catch (error) {
-    res.status(403).send("Error occurred");
-  }
+app.post("/signup", signup, (req, res) => {
+  console.log("signed up successfully");
 });
 
-app.get("/signin", (req, res) => {
-  res.send("You have logged in ");
+app.post("/signin", signin, (res, req) => {
+  console.log("signedin successfully");
 });
 
-// start
-function start(port) {
-  app.listen(port, () => {
-    console.log(`server is running on port ${port}`);
+function start(PORT) {
+  app.listen(PORT || 5000, () => {
+    console.log(`listening on ${PORT}`);
   });
 }
 
-app.use(errorHandler);
-app.use("*", notFound);
-
 module.exports = {
-  app: app,
-  start: start,
+  app,
+  start,
 };
+// // dependencies
+// const express = require("express");
+// const app = express();
+// const cors = require("cors");
+// require("dotenv").config();
+// const errorHandler = require("./errorHandler/500");
+// const notFound = require("./errorHandler/404");
+// const auth = require("./routes/authroute");
+
+// // env variables
+// const PORT = process.env.PORT;
+
+// // middlewares
+// app.use(express.json());
+// app.use(cors());
+
+// app.get("/", (req, res) => {
+//   res.status(200).send("Welcome Home");
+// });
+
+// app.use(auth);
+
+// app.use(errorHandler);
+// app.use("*", notFound);
+
+// // server start function
+// function start(port) {
+//   app.listen(port, () => {
+//     console.log(`Server is working on port ${PORT}`);
+//   });
+// }
+
+// module.exports = {
+//   app: app,
+//   start: start,
+// };
