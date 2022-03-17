@@ -2,7 +2,7 @@
 we begin the first of a 3-Phase build of an authentication system, written in Express.
 
 ## UML diagram
-![UML](./auth.png)
+![UML](./uml6.png)
 
 ## **here are the links for the server:**
 
@@ -10,7 +10,7 @@ we begin the first of a 3-Phase build of an authentication system, written in Ex
    [Actions](https://github.com/marah-jaradat/basic-auth/actions)
 
 **2. The Pull request:**
-   [pull request](https://github.com/marah-jaradat/basic-auth/pull/3)
+   [pull request](https://github.com/marah-jaradat/basic-auth/pull/10)
 
 **3. Heroku link**
-    [deploy-main](https://basic-auth-marah.herokuapp.com/)
+    [deploy-main](https://basic-auth-6.herokuapp.com/)
