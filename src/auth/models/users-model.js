@@ -1,10 +1,6 @@
 "use strict";
 
-require("dotenv").config();
-const bcrypt = require("bcrypt");
-const { sequelize, DataTypes } = require("./indexmodel");
-
-const Users = (sequelize, DataTypes) =>
+const user = (sequelize, DataTypes) =>
   sequelize.define("user", {
     username: {
       type: DataTypes.STRING,
@@ -16,4 +12,4 @@ const Users = (sequelize, DataTypes) =>
     },
   });
 
-module.exports = Users;
+module.exports = user;
